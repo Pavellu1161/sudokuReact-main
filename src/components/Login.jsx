@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 
 const Login = (props) => {
   const [playerName, setPlayerName] = React.useState("");
@@ -20,8 +20,10 @@ const Login = (props) => {
       <div className="registro">
         <label class ="name" >Nombre: </label>
         <input
-        class="caja"
+          id = "Nombreusuario"
+          class="caja"
           value={playerName}
+          required
           onChange={handleInputChange}
           type="text"
           placeholder="Ingrese su nombre para iniciar"
@@ -36,16 +38,28 @@ const Login = (props) => {
   );
 
   function controlHandleSubmit(e) {
+
+    const Nombre = playerName;
+
+    if(Nombre === ''){
+      alert("El campo esta vacío");
+    }else{
+    
     e.preventDefault();
     props.setUsers([...props.users, { playerName, tiempo: 0 }]);
     props.setPlayerName(playerName);
+    
     setPlayerName("");
     history.push("/home");
+
+    }
+
   }
 
   function handleInputChange(e) {
     setPlayerName(e.target.value);
   }
+
 };
 
 export default Login;

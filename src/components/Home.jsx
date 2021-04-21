@@ -4,6 +4,13 @@ import { useHistory } from "react-router-dom";
 const Home = (props) => {
   const history = useHistory();
 
+  const persona = props.playerName;
+
+  if (persona ==="") {
+    history.push("/");
+  }
+
+
   return (
     <div className="homeInformacion">
       
